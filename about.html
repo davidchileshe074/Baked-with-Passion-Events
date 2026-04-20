@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Baked with Passion & Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(43,43,43,0.5), rgba(43,43,43,0.5)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2069');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .value-card {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-premium);
+            border: none; /* Border removed */
+        }
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        @media (max-width: 992px) {
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                BAKED WITH PASSION
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="special-features.html">Special Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">Our Story</h1>
+            <p style="letter-spacing: 3px; text-transform: uppercase; margin-top: 10px;">Passion In Every Detail</p>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="story-section">
+                <div class="story-image reveal">
+                    <img src="Assets/673527427_965582456412098_4818413068058866619_n.jpg" alt="Our Work" style="width: 100%; border-radius: 30px; box-shadow: var(--shadow-premium);">
+                </div>
+                <div class="story-content reveal">
+                    <span style="color: var(--gold); font-weight: 600; text-transform: uppercase;">Since 2020</span>
+                    <h2 style="font-size: 2.8rem; margin: 20px 0;">Baked with Passion & Events</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+                        Baked with Passion & Events is a Lusaka-based luxury events and catering brand dedicated to creating elegant, unforgettable experiences. What started as a passion for baking has evolved into a full-scale event management and catering service that sets the standard for class and creativity in Zambia.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-top: 20px;">
+                        Our founder's vision was simple: to bring high-end, emotional aesthetics to every celebration. From the intricate details of a Chilanga Mulilo booth to the exquisite flavors of our catering menus, we ensure that every event is a masterpiece.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section style="background: var(--blush); padding: 100px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem;">Our Core Values</h2>
+                <p style="color: var(--text-muted);">The principles that guide our pursuit of excellence.</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card reveal">
+                    <i class="fas fa-magic"></i>
+                    <h3>Creativity</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">We push the boundaries of design to create unique, personalized experiences for every client.</p>
+                </div>
+                <div class="value-card reveal">
+                    <i class="fas fa-gem"></i>
+                    <h3>Elegance</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">A commitment to sophisticated styles and premium finishes in everything we do.</p>
+                </div>
+                <div class="value-card reveal">
+                    <i class="fas fa-search"></i>
+                    <h3>Attention to Detail</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">No detail is too small. We obsess over the micro-elements that make a big impact.</p>
+                </div>
+                <div class="value-card reveal">
+                    <i class="fas fa-heart"></i>
+                    <h3>Satisfaction</h3>
+                    <p style="color: var(--text-muted); margin-top: 15px;">Our goal is to exceed expectations and create lasting memories for our guests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260772313964" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">BAKED WITH PASSION</a>
+                    <p style="color: #ccc; margin-top: 20px;">Luxury events and catering in Lusaka, Zambia.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <p style="color: #888;">Baked with Passion & Events is committed to excellence and emotional storytelling through design.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Baked with Passion & Events.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

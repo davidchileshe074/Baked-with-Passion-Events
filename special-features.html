@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Features | Baked with Passion & Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .feature-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Assets/672685930_965582246412119_793346440044242944_n.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .pricing-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition-smooth);
+            border: none; /* Border removed */
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card.premium {
+            border: none; /* Border removed */
+            transform: scale(1.05);
+            z-index: 2;
+        }
+        .pricing-card.premium::before {
+            content: "Most Popular";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--gold);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .price {
+            font-size: 3rem;
+            color: var(--gold);
+            margin: 20px 0;
+            font-weight: 700;
+        }
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+            padding: 0;
+            text-align: left;
+        }
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+        }
+        .features-list i {
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                BAKED WITH PASSION
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="special-features.html">Special Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="feature-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Unique Event Offerings</h1>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Discover our signature setups that make Baked with Passion & Events the gold standard for celebrations in Lusaka.</p>
+        </div>
+    </section>
+
+    <!-- Chilanga Mulilo Booths -->
+    <section class="section-padding">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <span style="color: var(--gold); text-transform: uppercase; letter-spacing: 2px;">Heritage & Elegance</span>
+                <h2 style="font-size: 2.8rem; margin-top: 10px;">Chilanga Mulilo Booth Packages</h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 20px auto;">Exquisite traditional setups designed to honor heritage with modern luxury.</p>
+            </div>
+
+            <div class="pricing-table">
+                <!-- Basic -->
+                <div class="pricing-card reveal">
+                    <h3>Basic Setup</h3>
+                    <div class="price">K2,500</div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Traditional Backdrop</li>
+                        <li><i class="fas fa-check"></i> Basic Matting (Amanyula)</li>
+                        <li><i class="fas fa-check"></i> Floral Accents</li>
+                        <li><i class="fas fa-check"></i> Delivery & Setup</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline" style="width: 100%;">Inquire Now</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card premium reveal">
+                    <h3>Luxury Elite</h3>
+                    <div class="price">K4,500</div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Full Canopy Booth</li>
+                        <li><i class="fas fa-check"></i> Premium Traditional Draping</li>
+                        <li><i class="fas fa-check"></i> Luxury Lighting (Chandelier/Fairy)</li>
+                        <li><i class="fas fa-check"></i> Elaborate Floral Arrangements</li>
+                        <li><i class="fas fa-check"></i> Traditional Accents & Props</li>
+                        <li><i class="fas fa-check"></i> Priority Setup</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Book Luxury</a>
+                </div>
+
+                <!-- Standard -->
+                <div class="pricing-card reveal">
+                    <h3>Standard Style</h3>
+                    <div class="price">K3,500</div>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Modern-Traditional Mix</li>
+                        <li><i class="fas fa-check"></i> Enhanced Matting</li>
+                        <li><i class="fas fa-check"></i> Warm Ambience Lighting</li>
+                        <li><i class="fas fa-check"></i> Standard Floral Package</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline" style="width: 100%;">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Booth & Picnic Setups -->
+    <section style="background: var(--blush); padding: 100px 0;">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
+                <div style="flex: 1; min-width: 300px;" class="reveal">
+                    <img src="Assets/675489196_965582423078768_8944959633111392868_n.jpg" alt="Picnic Setup" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-premium);">
+                </div>
+                <div style="flex: 1; min-width: 300px;" class="reveal">
+                    <h2>Budget-Friendly Photo Booths</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted); font-size: 1.1rem;">
+                        Capture the fun without breaking the bank. Our photo booth setups are perfect for birthdays, weddings, and corporate events, providing a beautiful backdrop for your guests' memories.
+                    </p>
+                    <div style="background: white; padding: 25px; border-radius: 15px; border-left: 5px solid var(--gold);">
+                        <p style="font-weight: 700; color: var(--gold);">Picnic Setups from K1,200</p>
+                        <p style="font-size: 0.9rem; color: #777;">Includes rugs, cushions, low tables, and décor for up to 6 people.</p>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary" style="margin-top: 30px;">Request a Brochure</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260772313964" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">BAKED WITH PASSION</a>
+                    <p style="color: #ccc; margin-top: 20px;">Lusaka's leader in luxury event experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Direct Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0772313964</li>
+                        <li><i class="fas fa-envelope"></i> emmelymwewa@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Baked with Passion & Events.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

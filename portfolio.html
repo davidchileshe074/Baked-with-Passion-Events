@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio | Baked with Passion & Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 25px;
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            font-weight: 500;
+            color: var(--gold);
+        }
+        .tab.active {
+            background: var(--gold);
+            color: white;
+        }
+        .portfolio-grid {
+            columns: 3 300px;
+            column-gap: 20px;
+        }
+        .portfolio-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .portfolio-item img {
+            width: 100%;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                BAKED WITH PASSION
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="special-features.html">Special Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header style="background: var(--ivory); padding: 150px 0 80px; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Event Gallery</h1>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">A collection of our finest work, showcasing the elegance and creativity we bring to every celebration in Zambia.</p>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="portfolio-tabs">
+                <div class="tab active" onclick="filterPortfolio('all')">All Events</div>
+                <div class="tab" onclick="filterPortfolio('weddings')">Weddings</div>
+                <div class="tab" onclick="filterPortfolio('chilanga')">Chilanga Mulilo</div>
+                <div class="tab" onclick="filterPortfolio('birthdays')">Birthdays</div>
+                <div class="tab" onclick="filterPortfolio('corporate')">Corporate</div>
+                <div class="tab" onclick="filterPortfolio('picnics')">Picnics</div>
+            </div>
+
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- Using assets for diversity -->
+                <div class="portfolio-item chilanga reveal">
+                    <img src="Assets/672685930_965582246412119_793346440044242944_n.jpg" alt="Chilanga Mulilo 1">
+                    <div class="portfolio-overlay">
+                        <h3>Tradition Meets Class</h3>
+                        <p>Chilanga Mulilo Setup</p>
+                    </div>
+                </div>
+                <div class="portfolio-item chilanga reveal">
+                    <img src="Assets/673502106_965582356412108_8331173741980834942_n.jpg" alt="Chilanga Mulilo 2">
+                    <div class="portfolio-overlay">
+                        <h3>Gold & Ivory Setup</h3>
+                        <p>Kitchen Party Booth</p>
+                    </div>
+                </div>
+                <div class="portfolio-item weddings reveal">
+                    <img src="Assets/673527427_965582456412098_4818413068058866619_n.jpg" alt="Wedding 1">
+                    <div class="portfolio-overlay">
+                        <h3>Royal Reception</h3>
+                        <p>Luxury Wedding Décor</p>
+                    </div>
+                </div>
+                <div class="portfolio-item birthdays reveal">
+                    <img src="Assets/673659994_965582256412118_8481048141778747944_n.jpg" alt="Birthday 1">
+                    <div class="portfolio-overlay">
+                        <h3>Rose Gold Celebration</h3>
+                        <p>Birthday Party Setup</p>
+                    </div>
+                </div>
+                <div class="portfolio-item corporate reveal">
+                    <img src="Assets/674567395_965582343078776_1162985514440748926_n.jpg" alt="Corporate 1">
+                    <div class="portfolio-overlay">
+                        <h3>Elegant Corporate Lunch</h3>
+                        <p>Corporate Catering & Décor</p>
+                    </div>
+                </div>
+                <div class="portfolio-item weddings reveal">
+                    <img src="Assets/675230593_965582313078779_371462930887483093_n.jpg" alt="Wedding 2">
+                    <div class="portfolio-overlay">
+                        <h3>Floral Dream</h3>
+                        <p>Wedding Aisle Styling</p>
+                    </div>
+                </div>
+                <div class="portfolio-item picnics reveal">
+                    <img src="Assets/675489196_965582423078768_8944959633111392868_n.jpg" alt="Picnic 1">
+                    <div class="portfolio-overlay">
+                        <h3>Sunset Picnic</h3>
+                        <p>Luxury Picnic Packages</p>
+                    </div>
+                </div>
+                <div class="portfolio-item chilanga reveal">
+                    <img src="Assets/678157696_966975819606095_4999866754877287098_n.jpg" alt="Chilanga Mulilo 3">
+                    <div class="portfolio-overlay">
+                        <h3>Traditional Grandeur</h3>
+                        <p>Chilanga Mulilo Booth</p>
+                    </div>
+                </div>
+                <div class="portfolio-item birthdays reveal">
+                    <img src="Assets/677925803_966975232939487_8665245458590029711_n.jpg" alt="Birthday 2">
+                    <div class="portfolio-overlay">
+                        <h3>Sweet Seventeen</h3>
+                        <p>Birthday Cake & Favors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260772313964" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">BAKED WITH PASSION</a>
+                    <p style="color: #ccc; margin-top: 20px;">Creating elegant, unforgettable experiences in Lusaka.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Baked with Passion & Events.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if(tab.textContent.toLowerCase().includes(category) || (category === 'all' && tab.textContent === 'All Events')) {
+                    tab.classList.add('active');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 10);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

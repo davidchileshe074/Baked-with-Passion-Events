@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Baked with Passion & Events</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .service-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+        }
+        .service-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .service-image {
+            flex: 1;
+            height: 500px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+        }
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .service-info {
+            flex: 1;
+        }
+        .service-tag {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .price-hint {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin: 20px 0;
+            display: block;
+        }
+        @media (max-width: 992px) {
+            .service-section, .service-section:nth-child(even) {
+                flex-direction: column;
+                gap: 40px;
+                margin-bottom: 80px;
+            }
+            .service-image {
+                width: 100%;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation -->
+    <nav class="scrolled"> <!-- Force scrolled state for subpages typically looks better -->
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                BAKED WITH PASSION
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="special-features.html">Special Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header style="background: var(--blush); padding: 150px 0 80px; text-align: center;">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Our Premium Services</h1>
+            <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">We offer a comprehensive suite of event and catering services designed to make your special moments unforgettable.</p>
+        </div>
+    </header>
+
+    <!-- Services Detail -->
+    <section class="section-padding">
+        <div class="container">
+            
+            <!-- Event Catering -->
+            <div class="service-section reveal">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=2070" alt="Event Catering">
+                </div>
+                <div class="service-info">
+                    <span class="service-tag">Taste of Elegance</span>
+                    <h2>Event Catering</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted);">
+                        Our culinary team specializes in creating bespoke menus that delight the senses. Whether it's a corporate luncheon, a wedding banquet, or an intimate dinner party, we provide gourmet food that reflects your personal style.
+                    </p>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Corporate Platters & Luncheons</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Full Wedding Catering</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Professional Service Staff</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary">Request Quote</a>
+                </div>
+            </div>
+
+            <!-- Cakes -->
+            <div class="service-section reveal">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&q=80&w=1974" alt="Custom Cakes">
+                </div>
+                <div class="service-info">
+                    <span class="service-tag">Sweet Indulgence</span>
+                    <h2>Signature Cakes & Bento Cakes</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted);">
+                        From grand multi-tier wedding cakes to trendy bento cakes for small surprises, our bakery is dedicated to craftsmanship and flavor. Each cake is a work of art made from the finest ingredients.
+                    </p>
+                    <span class="price-hint">Pricing from K350</span>
+                    <a href="contact.html" class="btn btn-outline" style="border-color: var(--gold); color: var(--gold);">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Event Decor -->
+            <div class="service-section reveal">
+                <div class="service-image">
+                    <img src="Assets/678613335_966975456272798_7182951393982953057_n.jpg" alt="Event Decor">
+                </div>
+                <div class="service-info">
+                    <span class="service-tag">Visual Magic</span>
+                    <h2>Event Décor & Styling</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted);">
+                        Transforming venues into breathtaking spaces. We handle everything from table settings and floral arrangements to full-scale theme implementations for Weddings, Birthdays, and Kitchen Parties.
+                    </p>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Concept Design & Moodboards</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Floral & Table Styling</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: var(--gold); margin-right: 10px;"></i> Lighting & Ambiance</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+                </div>
+            </div>
+
+            <!-- Balloon Styling -->
+            <div class="service-section reveal">
+                <div class="service-image">
+                    <img src="Assets/677141962_966977572939253_1460839350310948574_n.jpg" alt="Balloon Styling">
+                </div>
+                <div class="service-info">
+                    <span class="service-tag">Whimsical Accents</span>
+                    <h2>Balloon Garlands & Room Décor</h2>
+                    <p style="margin: 20px 0; color: var(--text-muted);">
+                        Sophisticated balloon installations that add a modern, playful touch to any event. Our organic garlands and custom balloon walls are perfect for photo backdrops and room transformations.
+                    </p>
+                    <a href="contact.html" class="btn btn-outline" style="border-color: var(--gold); color: var(--gold);">Explore Options</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/260772313964" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">BAKED WITH PASSION</a>
+                    <p style="color: #ccc; margin-top: 20px;">Luxury events and catering brand dedicated to creating elegant, unforgettable experiences in Lusaka, Zambia.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i> 0772313964</li>
+                        <li><i class="fas fa-envelope" style="color: var(--gold); margin-right: 10px;"></i> emmelymwewa@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 10px;"></i> Lusaka Garden House</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Baked with Passion & Events. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
