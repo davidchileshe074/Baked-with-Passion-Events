@@ -11,7 +11,7 @@
     
     /* Semantic Colors */
     --text-main: var(--charcoal);
-    --text-muted: #555555;
+    --text-muted: #444444; /* Darkened from #555555 for better visibility */
     --bg-main: var(--ivory);
     --accent: var(--gold);
     
@@ -39,8 +39,9 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.8; /* Increased from 1.6 for better readability */
     overflow-x: hidden;
+    font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6, .luxury-font {
@@ -215,7 +216,12 @@ nav {
     width: 100%;
     z-index: 1000;
     padding: 25px 0;
+    background: var(--ivory); /* Light background by default for subpages */
     transition: var(--transition-smooth);
+}
+
+nav.nav-transparent:not(.scrolled) {
+    background: transparent; /* Transparent only on specific pages when not scrolled */
 }
 
 nav.scrolled {
@@ -233,13 +239,18 @@ nav.scrolled {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Slightly increased */
     font-weight: 900;
     color: var(--gold);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 10px;
+    transition: var(--transition-fast);
+}
+
+nav.nav-transparent:not(.scrolled) .logo {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Ensure logo is visible on dark images */
 }
 
 .nav-links {
@@ -251,12 +262,17 @@ nav.scrolled {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--charcoal);
-    font-weight: 500;
-    font-size: 0.9rem;
+    color: var(--charcoal); /* Default dark color for ivory background */
+    font-weight: 600; /* Increased from 500 */
+    font-size: 1rem; /* Increased from 0.9rem */
     letter-spacing: 0.05em;
     transition: var(--transition-fast);
     position: relative;
+}
+
+nav.nav-transparent:not(.scrolled) .nav-links a {
+    color: white; /* White links for transparent state (Hero pages) */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Added shadow for visibility on hero images */
 }
 
 .nav-links a:hover {
@@ -286,6 +302,7 @@ nav.scrolled {
     .nav-links a {
         font-size: 1.3rem;
         color: var(--charcoal);
+        font-weight: 700; /* Increased for mobile visibility */
     }
 }
 
@@ -402,6 +419,8 @@ nav.scrolled {
     animation: fadeInUp 0.8s forwards 0.5s;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    font-weight: 600; /* Increased for visibility */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .hero-btns {
