@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- GSAP for advanced animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- GSAP removed -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <style>
         .contact-container {
@@ -75,9 +73,57 @@
             .contact-container {
                 grid-template-columns: 1fr;
             }
-            .booking-form, .contact-info-card {
-                padding: 30px;
+        }
+        @media (max-width: 768px) {
+            .contact-container {
+                gap: 40px;
+                margin-top: 20px;
+                grid-template-columns: 1fr;
             }
+            .booking-form, .contact-info-card {
+                padding: 25px 20px;
+                border-radius: 15px;
+            }
+            .form-row {
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+            }
+            header {
+                padding: 120px 0 60px !important;
+            }
+            header h1 {
+                font-size: 2.5rem !important;
+            }
+            .info-item {
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+            .info-item i {
+                font-size: 1.2rem;
+            }
+            .social-btns {
+                flex-wrap: wrap;
+                gap: 10px !important;
+            }
+            .social-btns .btn {
+                padding: 8px 15px !important;
+                font-size: 0.75rem !important;
+            }
+            .map-section {
+                height: 300px !important;
+                margin-top: 60px;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            .form-group label {
+                font-size: 0.9rem;
+            }
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
     </style>
 </head>
@@ -111,7 +157,7 @@
     <!-- Header Section -->
     <header style="background: var(--ivory); padding: 150px 0 80px; text-align: center;">
         <div class="container">
-            <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Let’s Start Planning</h1>
+            <h1 class="contact-title" style="font-size: 3.5rem; margin-bottom: 20px;">Let’s Start Planning</h1>
             <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">Ready to create something beautiful? Fill out the form below or reach out directly to begin your journey with us.</p>
         </div>
     </header>
@@ -124,7 +170,7 @@
                 <div class="booking-form reveal">
                     <h2 style="margin-bottom: 30px;">Event Inquiry Form</h2>
                     <form id="bookingForm">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name</label>
                                 <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
@@ -138,7 +184,7 @@
                             <label for="email">Email Address</label>
                             <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="event_type">Event Type</label>
                                 <select id="event_type" class="form-control" required>
@@ -193,7 +239,7 @@
 
                     <div style="margin-top: 50px;">
                         <h4 style="margin-bottom: 20px;">Follow Our Journey</h4>
-                        <div style="display: flex; gap: 15px;">
+                        <div class="social-btns" style="display: flex; gap: 15px;">
                             <a href="#" class="btn btn-outline" style="padding: 10px 15px; border-color: rgba(255,255,255,0.2); color: white;"><i class="fab fa-instagram"></i></a>
                             <a href="#" class="btn btn-outline" style="padding: 10px 15px; border-color: rgba(255,255,255,0.2); color: white;"><i class="fab fa-facebook"></i></a>
                             <a href="https://wa.me/260772313964" class="btn btn-primary" style="background: #25d366; border: none; padding: 10px 20px;"><i class="fab fa-whatsapp"></i> Chat Now</a>

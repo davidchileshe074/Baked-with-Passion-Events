@@ -3,68 +3,84 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', () => {
-            gsap.to(preloader, {
-                opacity: 0,
-                duration: 1.5,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    preloader.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
+            preloader.style.transition = 'opacity 1.5s ease-in-out';
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                document.body.style.overflow = 'auto'; // ensure overflow is reset
+                document.body.style.overflowX = 'clip'; // keep x clip
+            }, 1500);
         });
-        // Backup: Hide after 4s regardless of load event
+        // Backup
         setTimeout(() => {
             if (preloader.style.display !== 'none') {
-                preloader.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                preloader.style.transition = 'opacity 1s';
+                preloader.style.opacity = '0';
+                setTimeout(() => { 
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    document.body.style.overflowX = 'clip';
+                }, 1000);
             }
         }, 4000);
     }
 
-    // 1. Initialize Lenis Smooth Scroll
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
+    // 1. Scroll Progress Logic (Native)
+    const dots = document.querySelectorAll('.progress-dot');
+    const dotSections = ['hero', 'marquee', 'services', 'highlights', 'gallery', 'dreamer', 'testimonials'];
+
+    window.addEventListener('scroll', () => {
+        let current = "";
+        dotSections.forEach(section => {
+            const el = document.getElementById(section);
+            if (el) {
+                const sectionTop = el.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section;
+                }
+            }
+        });
+
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+            if (dot.getAttribute('data-target') === current) {
+                dot.classList.add('active');
+            }
+        });
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const target = dot.getAttribute('data-target');
+            const el = document.getElementById(target);
+            if (el) {
+                window.scrollTo({
+                    top: el.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
     // 2. Custom Cursor Logic
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
-
+    
     if (cursor && follower) {
+        cursor.style.transition = 'transform 0.1s ease';
+        follower.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
             
-            gsap.to(cursor, {
-                x: mouseX,
-                y: mouseY,
-                duration: 0.1
-            });
-            
-            gsap.to(follower, {
-                x: mouseX - 11,
-                y: mouseY - 11,
-                duration: 0.3
-            });
+            const isScale = cursor.classList.contains('active') ? 'scale(3)' : '';
+            const isFollowerScale = follower.classList.contains('active') ? 'scale(1.5)' : '';
+
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) ${isScale}`;
+            follower.style.transform = `translate3d(${mouseX - 11}px, ${mouseY - 11}px, 0) ${isFollowerScale}`;
         });
 
-        // Hover effect on links/buttons
         const interactive = document.querySelectorAll('a, button, .btn, .gallery-item, .glass-card, .service-card');
         interactive.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -78,41 +94,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Fade in sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        gsap.from(section, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            scrollTrigger: {
-                trigger: section,
-                start: 'top 80%',
-                toggleActions: 'play none none none'
+    // 3. Fade in sections and reveal elements using vanilla IntersectionObserver
+    const animatedElements = document.querySelectorAll('section, .reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('reveal')) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+                observer.unobserve(entry.target);
             }
         });
+    }, { rootMargin: '0px 0px -50px 0px', threshold: 0 });
+
+    animatedElements.forEach(el => {
+        if (!el.classList.contains('reveal')) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+        }
+        observer.observe(el);
     });
 
     // Hero Parallax
-    gsap.to('.hero-media', {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-        }
-    });
+    const heroMedia = document.querySelector('.hero-media');
+    if (heroMedia) {
+        window.addEventListener('scroll', () => {
+            let scrolled = window.pageYOffset;
+            heroMedia.style.transform = `translateY(${scrolled * 0.3}px)`;
+        });
+    }
 
     // Hero Content Stagger
-    const heroTl = gsap.timeline();
-    heroTl.to('.hero-content p', { opacity: 1, y: 0, duration: 1, delay: 0.5 })
-          .to('.hero-content h1', { opacity: 1, y: 0, duration: 1 }, '-=0.5')
-          .to('.hero-btns', { opacity: 1, y: 0, duration: 1 }, '-=0.5');
+    const heroP = document.querySelector('.hero-content p');
+    const heroH1 = document.querySelector('.hero-content h1');
+    const heroBtns = document.querySelector('.hero-btns');
+    
+    setTimeout(() => {
+        if(heroP) { heroP.style.transition = 'opacity 1s, transform 1s'; heroP.style.opacity = '1'; heroP.style.transform = 'translateY(0)'; }
+    }, 500);
+    setTimeout(() => {
+        if(heroH1) { heroH1.style.transition = 'opacity 1s, transform 1s'; heroH1.style.opacity = '1'; heroH1.style.transform = 'translateY(0)'; }
+    }, 1000);
+    setTimeout(() => {
+        if(heroBtns) { heroBtns.style.transition = 'opacity 1s, transform 1s'; heroBtns.style.opacity = '1'; heroBtns.style.transform = 'translateY(0)'; }
+    }, 1500);
 
     // Nav scroll effect
     const nav = document.querySelector('nav');
@@ -168,71 +197,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.dreamer-next');
     let currentStep = 0;
 
-    if (nextBtn) {
+    if (nextBtn && dreamerSteps.length > 0) {
         nextBtn.addEventListener('click', () => {
             if (currentStep < dreamerSteps.length - 1) {
-                gsap.to(dreamerSteps[currentStep], { opacity: 0, x: -50, display: 'none', duration: 0.5 });
-                currentStep++;
-                gsap.fromTo(dreamerSteps[currentStep], 
-                    { opacity: 0, x: 50, display: 'block' },
-                    { opacity: 1, x: 0, duration: 0.5 }
-                );
+                const current = dreamerSteps[currentStep];
+                current.style.transition = 'opacity 0.5s, transform 0.5s';
+                current.style.opacity = '0';
+                current.style.transform = 'translateX(-50px)';
                 
-                if (currentStep === dreamerSteps.length - 1) {
-                    nextBtn.innerHTML = 'Complete My Dream';
-                }
+                setTimeout(() => {
+                    current.style.display = 'none';
+                    currentStep++;
+                    const next = dreamerSteps[currentStep];
+                    next.style.display = 'block';
+                    next.style.opacity = '0';
+                    next.style.transform = 'translateX(50px)';
+                    
+                    // Trigger reflow
+                    void next.offsetWidth;
+                    
+                    next.style.transition = 'opacity 0.5s, transform 0.5s';
+                    next.style.opacity = '1';
+                    next.style.transform = 'translateX(0)';
+                    
+                    if (currentStep === dreamerSteps.length - 1) {
+                        nextBtn.innerHTML = 'Complete My Dream';
+                    }
+                }, 500);
             } else {
                 // Success animation
                 const card = document.querySelector('.dreamer-card');
-                gsap.to(card, { 
-                    scale: 1.05, 
-                    duration: 0.3, 
-                    yoyo: true, 
-                    repeat: 1, 
-                    onComplete: () => {
+                card.style.transition = 'transform 0.3s ease';
+                card.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                    setTimeout(() => {
                         alert("Our luxury event planners have received your dream! We'll contact you shortly.");
-                        // Reset or redirect
-                    }
-                });
+                    }, 300);
+                }, 300);
             }
         });
     }
 
-    // 8. Scroll Progress Logic
-    const dots = document.querySelectorAll('.progress-dot');
-    const dotSections = ['hero', 'marquee', 'services', 'highlights', 'gallery', 'dreamer', 'testimonials'];
-
-    window.addEventListener('scroll', () => {
-        let current = "";
-        dotSections.forEach(section => {
-            const el = document.getElementById(section);
-            if (el) {
-                const sectionTop = el.offsetTop;
-                if (window.pageYOffset >= sectionTop - 100) {
-                    current = section;
-                }
-            }
-        });
-
-        dots.forEach(dot => {
-            dot.classList.remove('active');
-            if (dot.getAttribute('data-target') === current) {
-                dot.classList.add('active');
-            }
-        });
-    });
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            const target = dot.getAttribute('data-target');
-            const el = document.getElementById(target);
-            if (el) {
-                lenis.scrollTo(el);
-            }
-        });
-    });
-
-    // 9. Magnetic Buttons
+    // 9. Magnetic Buttons (Vanilla JS)
     const magnets = document.querySelectorAll('.btn-primary, .btn-outline, .logo');
     magnets.forEach((btn) => {
         btn.addEventListener('mousemove', (e) => {
@@ -240,25 +247,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.pageX - position.left - position.width / 2;
             const y = e.pageY - position.top - position.height / 2;
 
-            gsap.to(btn, {
-                x: x * 0.3,
-                y: y * 0.3,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
+            btn.style.transition = 'none';
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
 
         btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: 'elastic.out(1, 0.3)'
-            });
+            btn.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            btn.style.transform = `translate(0, 0)`;
         });
     });
 
-    // 10. 3D Tilt Effect for Glass Cards
+    // 10. 3D Tilt Effect for Glass Cards (Vanilla JS)
     const cards = document.querySelectorAll('.glass-card');
     cards.forEach((card) => {
         card.addEventListener('mousemove', (e) => {
@@ -269,22 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const rotateX = -y / 15;
             const rotateY = x / 15;
 
-            gsap.to(card, {
-                rotateX: rotateX,
-                rotateY: rotateY,
-                duration: 0.5,
-                ease: 'power2.out',
-                perspective: 1000
-            });
+            card.style.transition = 'none';
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
-            gsap.to(card, {
-                rotateX: 0,
-                rotateY: 0,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
+            card.style.transition = 'transform 0.5s ease-out';
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
         });
     });
 

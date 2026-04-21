@@ -69,7 +69,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.8; /* Increased from 1.6 for better readability */
-    overflow-x: hidden;
+    overflow-x: clip;
     font-weight: 400;
     cursor: none; /* Hide default cursor */
 }
@@ -239,10 +239,14 @@ h1, h2, h3, h4, h5, h6, .luxury-font {
 }
 
 @media (max-width: 600px) {
-    .btn {
+    .btn:not(.social-btns .btn) {
         width: 100%;
-        padding: 14px 20px;
-        font-size: 0.8rem;
+        display: block;
+    }
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
     }
 }
 
@@ -388,7 +392,7 @@ nav.scrolled {
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; /* Slightly increased */
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
     font-weight: 900;
     color: var(--gold);
     text-decoration: none;
@@ -680,7 +684,7 @@ footer {
 .footer-logo {
     color: var(--gold);
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
     margin-bottom: 20px;
     display: block;
     text-decoration: none;
