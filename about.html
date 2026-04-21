@@ -46,13 +46,27 @@
             color: var(--gold);
             margin-bottom: 20px;
         }
-        @media (max-width: 992px) {
-            .story-section {
-                grid-template-columns: 1fr;
-                gap: 40px;
+            @media (max-width: 992px) {
+                .story-section {
+                    grid-template-columns: 1fr;
+                    gap: 40px;
+                }
             }
-        }
-    </style>
+            @media (max-width: 768px) {
+                .about-hero h1 {
+                    font-size: 2.5rem !important;
+                }
+                .story-content h2 {
+                    font-size: 2.2rem !important;
+                }
+                .section-padding {
+                    padding: 60px 0;
+                }
+                .value-card {
+                    padding: 30px 20px;
+                }
+            }
+        </style>
 </head>
 <body>
 

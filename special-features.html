@@ -23,8 +23,28 @@
             padding: 80px 20px 0;
         }
         @media (max-width: 768px) {
+            .feature-hero {
+                height: 50vh;
+                padding: 100px 20px 40px;
+            }
             .feature-hero h1 {
-                font-size: clamp(2rem, 8vw, 2.5rem) !important;
+                font-size: 2.2rem !important;
+            }
+            .pricing-table {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .pricing-card.premium {
+                transform: scale(1); /* Remove scale on mobile for better alignment */
+            }
+            .pricing-card {
+                padding: 35px 25px;
+            }
+            .section-padding {
+                padding: 60px 0;
+            }
+            h2 {
+                font-size: 2rem !important;
             }
         }
         .pricing-table {
