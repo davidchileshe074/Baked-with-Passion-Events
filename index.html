@@ -12,11 +12,62 @@
     <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    
     <style>
-        /* Specific page styles can go here or in style.css */
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--ivory);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 5px;
+            animation: pulse-logo 2s infinite;
+        }
+
+        @keyframes pulse-logo {
+            0% { opacity: 0.3; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.95); }
+        }
     </style>
 </head>
-<body>
+<body style="overflow: hidden;"> <!-- Hide overflow during loading -->
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">PASSION & EVENTS</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-nav">
+        <div class="progress-dot" data-target="hero"></div>
+        <div class="progress-dot" data-target="marquee"></div>
+        <div class="progress-dot" data-target="services"></div>
+        <div class="progress-dot" data-target="highlights"></div>
+        <div class="progress-dot" data-target="gallery"></div>
+        <div class="progress-dot" data-target="dreamer"></div>
+        <div class="progress-dot" data-target="testimonials"></div>
+    </div>
 
     <!-- Sticky Navigation -->
     <nav class="nav-transparent">
@@ -40,7 +91,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
+        <canvas id="hero-particles" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.6;"></canvas>
         <div class="hero-overlay"></div>
         <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2070" alt="Luxury Event Setup" class="hero-media">
         <div class="hero-content">
@@ -53,8 +105,26 @@
         </div>
     </section>
 
-    <!-- Services Preview -->
-    <section class="section-padding">
+    <!-- Luxury Marquee -->
+    <div class="luxury-marquee" id="marquee">
+        <div class="marquee-content">
+            <span>Bespoke Catering</span>
+            <span>Exquisite Decor</span>
+            <span>Signature Cakes</span>
+            <span>Luxury Events</span>
+            <span>Chilanga Mulilo</span>
+            <span>Corporate Gala</span>
+            <!-- Duplicate for seamless loop -->
+            <span>Bespoke Catering</span>
+            <span>Exquisite Decor</span>
+            <span>Signature Cakes</span>
+            <span>Luxury Events</span>
+            <span>Chilanga Mulilo</span>
+            <span>Corporate Gala</span>
+        </div>
+    </div>
+
+    <section class="section-padding" id="services">
         <div class="container">
             <div style="text-align: center; margin-bottom: 60px;">
                 <h2 style="font-size: 2.5rem; color: var(--gold);">Our Bespoke Services</h2>
@@ -95,7 +165,7 @@
     </section>
 
     <!-- Highlights Section -->
-    <section style="background: var(--blush); padding: 80px 0;">
+    <section style="background: var(--blush); padding: 80px 0;" id="highlights">
         <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 50px;">
             <div style="flex: 1; min-width: 300px;">
                 <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Luxury Chilanga Mulilo Booths</h2>
@@ -116,7 +186,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="section-padding">
+    <section class="section-padding" id="gallery">
         <div class="container">
             <div style="text-align: center; margin-bottom: 60px;">
                 <h2 style="font-size: 2.5rem;">Visual Excellence</h2>
@@ -154,17 +224,68 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section style="background: var(--ivory); padding: 80px 0; border-top: 1px solid var(--blush);">
+    <!-- Event Dreamer Interactive Tool -->
+    <section class="section-padding" style="background: var(--ivory);" id="dreamer">
         <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <i class="fas fa-quote-left" style="font-size: 3rem; color: var(--gold); opacity: 0.3; margin-bottom: 30px;"></i>
-                <div id="testimonial-slider">
-                    <div class="testimonial-item">
-                        <p style="font-size: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 25px;">
-                            "The décor for my Chilanga Mulilo was beyond anything I could have imagined. Baked with Passion & Events truly lives up to their name!"
-                        </p>
-                        <h4 style="color: var(--gold);">— Natasha Mwelwa</h4>
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; color: var(--gold);">The Event Dreamer</h2>
+                <p style="color: var(--text-muted);">Visualize your perfect luxury experience in just a few clicks.</p>
+            </div>
+            
+            <div class="dreamer-card glass-card" style="max-width: 800px; margin: 0 auto; padding: 50px; position: relative;">
+                <div class="dreamer-step" style="display: block;">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 30px; text-align: center;">What is the occasion?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div class="option-pill">Wedding</div>
+                        <div class="option-pill">Corporate</div>
+                        <div class="option-pill">Chilanga Mulilo</div>
+                        <div class="option-pill">Birthday</div>
+                    </div>
+                </div>
+                
+                <div class="dreamer-step" style="display: none;">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 30px; text-align: center;">Preferred Atmosphere?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div class="option-pill">Minimalist Gold</div>
+                        <div class="option-pill">Royal Blush</div>
+                        <div class="option-pill">Vintage Zambian</div>
+                        <div class="option-pill">Modern Ultra</div>
+                    </div>
+                </div>
+                
+                <div class="dreamer-step" style="display: none;">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 30px; text-align: center;">Estimated Guest Count?</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div class="option-pill">Intimate (0-50)</div>
+                        <div class="option-pill">Mid (50-200)</div>
+                        <div class="option-pill">Grand (200+)</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="btn btn-primary dreamer-next">Next Perspective</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="background: var(--ivory); padding: 120px 0; border-top: 1px solid var(--blush);" id="testimonials">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <div class="testimonial-container glass-card" style="padding: 60px; position: relative; overflow: visible;">
+                    <div style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); overflow: hidden; background: white;">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150" alt="Client" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <i class="fas fa-quote-left" style="font-size: 3rem; color: var(--gold); opacity: 0.1; margin-bottom: 20px; display: block;"></i>
+                    <div id="testimonial-slider">
+                        <div class="testimonial-item">
+                            <p style="font-size: 1.8rem; font-family: 'Playfair Display', serif; font-style: italic; margin-bottom: 25px; line-height: 1.4;">
+                                "The décor for my Chilanga Mulilo was beyond anything I could have imagined. Baked with Passion & Events truly lives up to their name - pure luxury!"
+                            </p>
+                            <h4 style="color: var(--gold); letter-spacing: 2px;">NATASHA MWELWA</h4>
+                            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Bride & Event Host</p>
+                        </div>
                     </div>
                 </div>
             </div>
